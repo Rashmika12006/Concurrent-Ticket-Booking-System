@@ -2,7 +2,7 @@ import { createClient } from "redis";
 
 // Create Redis client using environment variable
 const redisClient = createClient({
-    url: process.env.REDIS_URL
+    url: process.env.UPSTASH_REDIS_REST_URL
 });
 
 // Handle Redis errors
