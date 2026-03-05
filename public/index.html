@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Concurrent Ticket Booking</title>
+    <style>
+        body{
+            font-family: Arial;
+            text-align:center;
+            margin-top:100px;
+        }
+
+        button{
+            padding:10px 20px;
+            font-size:18px;
+            background:#007bff;
+            color:white;
+            border:none;
+            border-radius:5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🎟 Concurrent Ticket Booking System</h1>
+
+<p>Seat 1</p>
+
+<button onclick="bookSeat()">Book Seat</button>
+
+<p id="result"></p>
+
+<script>
+async function bookSeat(){
+    const res = await fetch('/api/book/1',{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+            userId: "user"+Math.floor(Math.random()*1000)
+        })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("result").innerText = data.message;
+}
+</script>
+
+</body>
+</html>
