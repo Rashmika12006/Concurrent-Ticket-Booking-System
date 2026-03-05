@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Concurrent Ticket Booking System</title>
+<title>Concurrent Ticket Booking</title>
+
 <style>
 body{
-font-family: Arial;
-text-align:center;
-margin-top:100px;
-background:#111;
+font-family:Arial;
+background:black;
 color:white;
+text-align:center;
+margin-top:120px;
+}
+
+button{
+padding:15px 25px;
+font-size:18px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
 }
 </style>
 </head>
@@ -16,14 +31,35 @@ color:white;
 <body>
 
 <h1>Concurrent Ticket Booking System</h1>
+<p>Redis Locking Simulation</p>
 
-<p>Node.js + Redis locking experiment</p>
+<button onclick="bookSeat()">Book Seat</button>
 
-<p>Repository by Rashmika</p>
+<h2 id="result"></h2>
 
-<a href="https://github.com/Rashmika12006/Concurrent-Ticket-Booking-System">
-View Source Code
-</a>
+<script>
+
+let seatLocked = false;
+
+function bookSeat(){
+
+if(!seatLocked){
+
+seatLocked = true;
+
+document.getElementById("result").innerText =
+"Seat booked successfully";
+
+}else{
+
+document.getElementById("result").innerText =
+"Seat already booked (Lock prevented double booking)";
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
