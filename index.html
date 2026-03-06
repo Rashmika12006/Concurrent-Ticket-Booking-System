@@ -39,21 +39,28 @@ background:#0056b3;
 
 <script>
 
-let seatLocked = false;
+async function bookSeat(){
 
-function bookSeat(){
+try{
 
-if(!seatLocked){
+const res = await fetch("http://localhost:3000/api/book/1",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+userId:"user"+Math.floor(Math.random()*100)
+})
+});
 
-seatLocked = true;
+const data = await res.json();
+
+document.getElementById("result").innerText = data.message;
+
+}catch(err){
 
 document.getElementById("result").innerText =
-"Seat booked successfully";
-
-}else{
-
-document.getElementById("result").innerText =
-"Seat already booked (Lock prevented double booking)";
+"Server not running. Start Node server.";
 
 }
 
